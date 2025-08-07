@@ -1,229 +1,870 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Brands Meet Podcasts That Matter</title>
-  <!-- Google Fonts: Inter -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #6366f1;
-      --accent: #3b82f6;
-      --secondary: #8b5cf6;
-      --neon: #00e8ff;
-      --white: #fff;
-      --bg-dark: #181826;
-      --radius: 22px;
-      --shadow: 0 4px 24px 0 rgba(30,23,69,0.14);
-    }
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: radial-gradient(circle at 40% 120%, var(--primary), var(--bg-dark) 90%);
-      font-family: 'Inter', Arial, sans-serif;
-      color: var(--white);
-      min-height: 100vh;
-    }
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: linear-gradient(90deg,rgba(48,56,108,0.60),rgba(55,0,90,0.3));
-      backdrop-filter: blur(10px);
-      padding: 1.5rem 3rem;
-      border-radius: 0 0 var(--radius) var(--radius);
-      box-shadow: var(--shadow);
-      position: sticky;
-      top:0; z-index:10;
-      animation: fade-down 1.1s;
-    }
-    @keyframes fade-down {
-      from { opacity: 0; transform: translateY(-30px);}
-      to { opacity: 1; transform: translateY(0);}
-    }
-    .logo {
-      font-weight: 800;
-      font-size: 1.5rem;
-      letter-spacing: 2px;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
-      color: transparent;
-      -webkit-background-clip: text; background-clip: text;
-      filter: drop-shadow(0 2px 6px rgba(0,232,255,0.12));
-    }
-    nav ul {
-      display: flex; gap: 2.2rem;
-      list-style:none; margin:0; padding:0;
-    }
-    nav a {
-      color: var(--white); text-decoration: none;
-      font-weight:600; font-size:1.1rem; position:relative;
-      padding: 6px 0; transition: color .25s;
-    }
-    nav a::after {
-      content:''; position:absolute; left:0; bottom:-3px;
-      width:0; height:2.5px;
-      background:linear-gradient(90deg,var(--accent),var(--neon));
-      transition:width.3s cubic-bezier(.5,.21,.25,.83); border-radius:3px;
-    }
-    nav a:hover { color: var(--neon);}
-    nav a:hover::after { width:100%; }
-    @media(max-width:700px){
-      nav {flex-direction:column; align-items:flex-start; gap:10px; padding:1rem 1.2rem;}
-      nav ul{gap:1.2rem;}
-    }
-    /* HERO */
-    .hero {
-      display: flex; flex-wrap:wrap; align-items: flex-start; gap: 6vw;
-      padding: 8vw 8vw 4vw 8vw;
-      min-height:60vh;
-      justify-content: space-between;
-    }
-    .hero-content {
-      flex: 1 1 340px;
-      display:flex;
-      flex-direction:column;
-      gap:1.7rem;
-      z-index:2;
-      animation:fade-in 1.3s;
-    }
-    @keyframes fade-in {
-      0% {opacity: 0; transform: translateY(40px);}
-      100% {opacity: 1; transform: translateY(0);}
-    }
-    .hero-title {
-      font-size:2.3rem;
-      font-weight:800;
-      background:linear-gradient(90deg,var(--primary),var(--neon) 80%);
-      color:transparent;
-      -webkit-background-clip:text;background-clip:text;
-      line-height:1.08;
-      margin-bottom:1rem;
-      filter:drop-shadow(0 2px 16px rgba(99,102,241,0.1));
-      text-shadow:0 1px 24px rgba(59,130,246,0.07);
-    }
-    .hero-subtitle {
-      font-size:1.21rem;
-      color:#c9ccf8;
-      font-weight:400;
-      margin-bottom: 0.3rem;
-    }
-    .cta-row{
-      display:flex; gap:1.05rem; margin-top:1.5rem;
-      flex-wrap:wrap;
-    }
-    .cta-btn{
-      display: inline-block;
-      font-size: 1.10rem;
-      font-weight: 700;
-      padding:0.82em 2.1em;
-      border-radius:999px;
-      border:none;
-      background:linear-gradient(90deg,var(--neon),var(--primary));
-      color:var(--white);
-      box-shadow:0 4px 32px 0 rgba(59,130,246,0.13);
-      cursor:pointer;
-      transition:background .23s, color .15s, transform .19s, box-shadow .22s;
-      outline:none;
-      text-decoration:none;
-      letter-spacing:.02em;
-      position:relative;
-      overflow:hidden;
-    }
-    .cta-btn:nth-child(2) {
-      background:linear-gradient(90deg,var(--accent),var(--secondary));
-    }
-    .cta-btn:hover {
-      background:linear-gradient(95deg,var(--neon),var(--secondary));
-      color:#180f3a;
-      transform:translateY(-2px) scale(1.03);
-      box-shadow: 0 8px 28px 0 rgba(0,232,255,0.15);
-    }
-    .creator-tag{
-      display:inline-block;
-      margin-top:1.4rem;
-      color:var(--neon);
-      background:rgba(59,130,246,.17);
-      border-radius:999px;
-      padding:0.3em 1.2em 0.3em 1.2em;
-      font-size:.98rem;
-      font-weight:600;
-      letter-spacing:1px;
-      box-shadow:0 2px 6px 0 rgba(59,130,246,0.10);
-      backdrop-filter: blur(7px);
-    }
-    .hero-visual {
-      flex:0 1 340px;
-      align-self:center; position:relative;
-      z-index:1; min-width:300px;min-height:300px; display:flex;align-items:center;justify-content:center;
-    }
-    .glassmorphism {
-      position:absolute; width:100%; height:100%;
-      background:linear-gradient(120deg,rgba(99,102,241,0.12) 40%,rgba(59,130,246,0.18) 100%);
-      box-shadow: 0 8px 46px 0 rgba(85,0,180,0.17);
-      border-radius:24px; backdrop-filter: blur(18px);
-      z-index:0; pointer-events:none;
-      border:1.5px solid rgba(99,102,241,0.18);
-      opacity:0.88;
-    }
-    .hero-shape {
-      width: 240px; height: 240px;
-      background:radial-gradient(circle at 70% 25%,var(--primary) 60%,var(--neon) 100%);
-      filter:blur(14px) brightness(1.13);
-      border-radius:50%;
-      position:absolute; top:32px; left:34px; z-index:1;
-      opacity:0.58;
-      animation:glow-alt 3s ease-in-out infinite alternate;
-    }
-    @keyframes glow-alt{
-      from{filter:blur(14px) brightness(1.07);}
-      to{filter:blur(26px) brightness(1.17);}
-    }
-    @media (max-width: 980px) {
-      .hero{flex-direction:column; padding:7vw 4vw 3vw 4vw;gap:3vw;}
-      nav{padding:1.1rem 1.2rem;}
-    }
-    @media (max-width:600px){
-      .hero{padding:4vw 1vw;}
-      .hero-title{font-size:1.5rem;}
-      .creator-tag{font-size:0.89rem;}
-      .hero-visual{min-width:210px;min-height:140px;}
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CastPod Connect | Where Brands Meet Podcasts That Matter</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0f0f14;
+            --bg-secondary: #181826;
+            --bg-tertiary: #1a1a2e;
+            --text-primary: #ffffff;
+            --text-secondary: #c9ccf8;
+            --text-muted: #8b8ba3;
+            --accent-primary: #6366f1;
+            --accent-secondary: #3b82f6;
+            --accent-neon: #00e8ff;
+            --accent-purple: #8b5cf6;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --gradient-primary: linear-gradient(135deg, #6366f1 0%, #3b82f6 100%);
+            --gradient-neon: linear-gradient(135deg, #00e8ff 0%, #8b5cf6 100%);
+            --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.2);
+            --shadow-hover: 0 20px 40px rgba(59, 130, 246, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            backdrop-filter: blur(20px);
+            background: rgba(15, 15, 20, 0.9);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            max-width: 1240px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient-neon);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--gradient-neon);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--accent-neon);
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 0 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 40%, var(--accent-primary) 0%, transparent 50%);
+            opacity: 0.1;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            width: 100%;
+        }
+
+        .hero-text {
+            flex: 1;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-neon);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: var(--text-primary);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--accent-secondary);
+            color: var(--accent-secondary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent-secondary);
+            color: var(--text-primary);
+        }
+
+        .hero-visual {
+            flex: 1;
+            position: relative;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-shape {
+            width: 300px;
+            height: 300px;
+            background: var(--gradient-neon);
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.3;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 6rem 0;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .service-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-glass);
+            border-color: var(--accent-secondary);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Stats Section */
+        .stats {
+            background: var(--bg-secondary);
+            padding: 4rem 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--gradient-neon);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            color: var(--text-secondary);
+            font-size: 1.125rem;
+        }
+
+        /* Process Section */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .process-step {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .process-number {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .process-step h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Team Section */
+        .team-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .team-stat {
+            padding: 1.5rem;
+        }
+
+        .team-stat h3 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent-neon);
+            margin-bottom: 0.5rem;
+        }
+
+        .team-stat p {
+            color: var(--text-secondary);
+        }
+
+        /* Blog Grid */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .blog-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-glass);
+        }
+
+        .blog-card-content {
+            padding: 2rem;
+        }
+
+        .blog-date {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .blog-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .contact-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-glass);
+            border-color: var(--accent-secondary);
+        }
+
+        .contact-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card p {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            padding: 3rem 0 1rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-neon);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--glass-border);
+            color: var(--text-muted);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-cta {
+                justify-content: center;
+            }
+            
+            .stats-grid,
+            .services-grid,
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        /* Animation Classes */
+        [data-aos] {
+            opacity: 0;
+            transition-property: opacity, transform;
+        }
+
+        [data-aos].aos-animate {
+            opacity: 1;
+        }
+    </style>
 </head>
 <body>
-  <!-- Navigation -->
-  <nav>
-    <span class="logo">CASTPOD</span>
-    <ul>
-      <li><a href="#">Features</a></li>
-      <li><a href="#">How it Works</a></li>
-      <li><a href="#">Podcasts</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
-  </nav>
+    <!-- Header -->
+    <header>
+        <nav class="nav-container">
+            <a href="#" class="logo">CastPod Connect</a>
+            <ul class="nav-menu">
+                <li><a href="#brands">For Brands</a></li>
+                <li><a href="#podcasters">For Podcasters</a></li>
+                <li><a href="/instagram-creators">Instagram Creators</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="/blog">Blog</a></li>
+                <li><a href="/join" class="btn btn-primary" style="padding: 0.5rem 1rem;">💼 Join Us</a></li>
+                <li><a href="/book-call" class="btn btn-secondary" style="padding: 0.5rem 1rem;">Book a Call</a></li>
+            </ul>
+            <button class="mobile-menu-toggle">☰</button>
+        </nav>
+    </header>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-content">
-      <div class="hero-title">
-        Where Brands Meet Podcasts That&nbsp;Matter
-      </div>
-      <div class="hero-subtitle">
-        Real Voices. Real Brands. Real Impact.<br>
-        <span style="color:#b6baf7;">This isn't just advertising—it's <span style="color:var(--neon);font-weight:600;">authentic connection</span>.</span>
-      </div>
-      <div class="cta-row">
-        <a class="cta-btn" href="https://castpod.vercel.app/brand-inquiry" target="_blank">I'm a Brand</a>
-        <a class="cta-btn" href="https://castpod.vercel.app/podcast-submission" target="_blank">I'm a Podcaster</a>
-      </div>
-      <span class="creator-tag">i am creator</span>
-    </div>
-    <div class="hero-visual">
-      <div class="glassmorphism"></div>
-      <div class="hero-shape"></div>
-      <!-- Optionally add your own SVG/podcast-themed art here! -->
-    </div>
-  </section>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text" data-aos="fade-up">
+                    <h1 class="hero-title">Where Brands Meet Podcasts That Matter</h1>
+                    <p class="hero-subtitle">Real Voices. Real Brands. Real Impact. This isn't just advertising—it's authentic connection.</p>
+                    <div class="hero-cta">
+                        <a href="/brand-inquiry" class="btn btn-primary">I'm a Brand</a>
+                        <a href="/podcast-submission" class="btn btn-secondary">I'm a Podcaster</a>
+                    </div>
+                </div>
+                <div class="hero-visual" data-aos="fade-left" data-aos-delay="200">
+                    <div class="hero-shape"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What We Do Section -->
+    <section class="section" id="services">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">What We Do (And Why It Matters)</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Three clear blocks. No fluff.</p>
+            
+            <div class="services-grid">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Talent Discovery</h3>
+                    <p>We find podcasters with purpose, not just a mic. Quality voices that align with your brand values.</p>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <h3>Brand Partnerships</h3>
+                    <p>We don't do mass marketing. We do authentic placement that feels natural and drives results.</p>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="400">
+                    <h3>Creator Growth Strategy</h3>
+                    <p>Monetization isn't a bonus. It's the goal. We help creators build sustainable income streams.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Podcasting Section -->
+    <section class="section stats">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Why Podcasting?</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Stats aren't decoration. They're ammo.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+                    <h3>4x</h3>
+                    <p>Podcast listeners are 4x more likely to trust a brand they hear in a show.</p>
+                </div>
+                <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
+                    <h3>🚀</h3>
+                    <p>India's audio scene is exploding. Ride the wave or miss the moment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stop Interrupting Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Stop Interrupting. Start Belonging.</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">People are done with ads. But they still trust voices. Be the brand that belongs in the conversation.</p>
+            
+            <div class="services-grid">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Host-read ads</h3>
+                    <p>Personal endorsements that feel authentic</p>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <h3>Custom segments</h3>
+                    <p>Tailored content that fits naturally</p>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="400">
+                    <h3>Real metrics that matter</h3>
+                    <p>Track engagement, not just impressions</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="section" id="process">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">The Process</h2>
+            
+            <div class="process-grid">
+                <div class="process-step" data-aos="fade-up" data-aos-delay="200">
+                    <div class="process-number">1</div>
+                    <h3>Discovery</h3>
+                </div>
+                <div class="process-step" data-aos="fade-up" data-aos-delay="300">
+                    <div class="process-number">2</div>
+                    <h3>Matchmaking</h3>
+                </div>
+                <div class="process-step" data-aos="fade-up" data-aos-delay="400">
+                    <div class="process-number">3</div>
+                    <h3>Creative Launch</h3>
+                </div>
+                <div class="process-step" data-aos="fade-up" data-aos-delay="500">
+                    <div class="process-number">4</div>
+                    <h3>Real-Time Reporting</h3>
+                </div>
+            </div>
+            
+            <div class="hero-cta" style="justify-content: center; margin-top: 3rem;">
+                <a href="/book-call" class="btn btn-primary">Schedule a Call</a>
+                <a href="#" class="btn btn-secondary">Download Our Brand Kit</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- For Podcasters Section -->
+    <section class="section" id="podcasters">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Turn Your Passion Into Paychecks</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Truth: Your voice has value. It's time someone paid you for it.</p>
+            
+            <div class="services-grid">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <h3>What You Get</h3>
+                    <p>Brand deals that fit your voice. A team that pitches you like you're already a star.</p>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <h3>Phase 2 (Coming Soon)</h3>
+                    <p>Once you start earning, we help you scale: Editing help, Social media growth, Audiogram clips, Marketing muscle</p>
+                </div>
+            </div>
+            
+            <div class="hero-cta" style="justify-content: center; margin-top: 3rem;">
+                <a href="/podcast-submission" class="btn btn-primary">Submit Your Podcast</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instagram Creators Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Instagram Creators: Start Earning Today</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Even with 1K followers, you can monetize your influence. Join thousands of creators earning through authentic brand partnerships.</p>
+            
+            <div class="services-grid">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <h3>No Minimum Followers</h3>
+                    <p>Start earning from 1K followers with authentic engagement</p>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <h3>Brand Alignment</h3>
+                    <p>Only work with brands that match your content and values</p>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="400">
+                    <h3>Fair Compensation</h3>
+                    <p>Transparent rates and timely payments for all collaborations</p>
+                </div>
+            </div>
+            
+            <div class="hero-cta" style="justify-content: center; margin-top: 3rem;">
+                <a href="/instagram-creators" class="btn btn-primary">Join as Instagram Creator</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="section stats" id="about">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Small Team. Loud Vision.</h2>
+            
+            <div class="team-stats">
+                <div class="team-stat" data-aos="fade-up" data-aos-delay="200">
+                    <h3>4</h3>
+                    <p>People. One mission: put podcasters on the map.</p>
+                </div>
+                <div class="team-stat" data-aos="fade-up" data-aos-delay="300">
+                    <h3>🇮🇳</h3>
+                    <p>Based in India. Rooted in hustle.</p>
+                </div>
+            </div>
+            
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="400">Not trying to be another agency — trying to build a movement. Vision: Make podcasting a legit career path in the creator economy.</p>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Learn From Our Blog</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Insights, strategies, and trends in podcast marketing and creator monetization.</p>
+            
+            <div class="blog-grid">
+                <div class="blog-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="blog-card-content">
+                        <div class="blog-date">May 28, 2024</div>
+                        <h3>The Complete Guide to Podcast Monetization in 2024</h3>
+                        <p>Discover proven strategies to turn your podcast into a sustainable income stream.</p>
+                    </div>
+                </div>
+                <div class="blog-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="blog-card-content">
+                        <div class="blog-date">May 20, 2024</div>
+                        <h3>Instagram Creator Strategies: Beyond Follower Count</h3>
+                        <p>How micro-influencers are outperforming accounts with millions of followers.</p>
+                    </div>
+                </div>
+                <div class="blog-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="blog-card-content">
+                        <div class="blog-date">May 15, 2024</div>
+                        <h3>How Brands Can Find Their Perfect Podcast Match</h3>
+                        <p>A step-by-step guide to identifying podcasts that align with your brand values.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-cta" style="justify-content: center; margin-top: 3rem;">
+                <a href="/blog" class="btn btn-secondary">View All Articles</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Ready to Start?</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Don't hide. Make it easy.</p>
+            
+            <div class="contact-grid">
+                <a href="/brand-inquiry" class="contact-card" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Brand Interest Form</h3>
+                    <p>Quick brand partnership inquiry</p>
+                </a>
+                <a href="/podcast-submission" class="contact-card" data-aos="fade-up" data-aos-delay="300">
+                    <h3>Submit Your Podcast</h3>
+                    <p>Join our creator network</p>
+                </a>
+                <a href="/instagram-creators" class="contact-card" data-aos="fade-up" data-aos-delay="400">
+                    <h3>Instagram Creator Network</h3>
+                    <p>Start earning from 1K followers</p>
+                </a>
+                <a href="/book-call" class="contact-card" data-aos="fade-up" data-aos-delay="500">
+                    <h3>Book a Discovery Call</h3>
+                    <p>Let's discuss your goals</p>
+                </a>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;" data-aos="fade-up" data-aos-delay="600">
+                <h3 style="margin-bottom: 0.5rem;">Direct Email</h3>
+                <p style="color: var(--accent-neon); font-size: 1.125rem;">castpodconnect@gmail.com</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">CastPod Connect</div>
+                <ul class="footer-links">
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 CastPod Connect. Real Voices. Real Brands. Real Impact.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Mobile menu toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(15, 15, 20, 0.95)';
+            } else {
+                header.style.background = 'rgba(15, 15, 20, 0.9)';
+            }
+        });
+    </script>
 </body>
 </html>
