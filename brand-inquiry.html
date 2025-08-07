@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Free Strategy Call | CastPod Connect</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0f0f14;
+            --bg-secondary: #181826;
+            --bg-tertiary: #1a1a2e;
+            --text-primary: #ffffff;
+            --text-secondary: #c9ccf8;
+            --text-muted: #8b8ba3;
+            --accent-primary: #6366f1;
+            --accent-secondary: #3b82f6;
+            --accent-neon: #00e8ff;
+            --accent-purple: #8b5cf6;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --gradient-primary: linear-gradient(135deg, #6366f1 0%, #3b82f6 100%);
+            --gradient-neon: linear-gradient(135deg, #00e8ff 0%, #8b5cf6 100%);
+            --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.2);
+            --shadow-hover: 0 20px 40px rgba(59, 130, 246, 0.1);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        .header {
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient-neon);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-decoration: none;
+        }
+
+        .back-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--accent-neon);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 30%, var(--accent-primary) 0%, transparent 60%);
+            opacity: 0.1;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-neon);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            padding: 0.75rem 1.5rem;
+            margin-bottom: 3rem;
+            color: var(--accent-neon);
+            font-weight: 600;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 4rem 0;
+            background: var(--bg-secondary);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .benefit-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-glass);
+            border-color: var(--accent-secondary);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: var(--gradient-neon);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            font-weight: 800;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .benefit-card p {
+            color: var(--text-secondary);
+        }
+
+        /* What You'll Get Section */
+        .what-you-get {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 3vw, 2.5rem);
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--text-primary);
+        }
+
+        .get-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .get-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .get-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-glass);
+        }
+
+        .get-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--accent-neon);
+        }
+
+        .get-card p {
+            color: var(--text-secondary);
+        }
+
+        /* Perfect For / Not For Section */
+        .for-section {
+            padding: 4rem 0;
+            background: var(--bg-secondary);
+        }
+
+        .for-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .for-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 1rem;
+            padding: 2rem;
+        }
+
+        .for-card.perfect {
+            border-color: var(--success);
+        }
+
+        .for-card.not-for {
+            border-color: var(--error);
+        }
+
+        .for-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .for-card.perfect h3 {
+            color: var(--success);
+        }
+
+        .for-card.not-for h3 {
+            color: var(--error);
+        }
+
+        .for-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .for-card li {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .for-card.perfect li::before {
+            content: '✅';
+            position: absolute;
+            left: 0;
+        }
+
+        .for-card.not-for li::before {
+            content: '⚠️';
+            position: absolute;
+            left: 0;
+        }
+
+        /* Form Section */
+        .form-section {
+            padding: 4rem 0;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 1rem;
+            padding: 3rem;
+        }
+
+        .form-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .form-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .form-badge {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--gradient-primary);
+            color: var(--text-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .required {
+            color: var(--error);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 0.5rem;
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-secondary);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: auto;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 1rem 2rem;
+            background: var(--gradient-primary);
+            color: var(--text-primary);
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .form-disclaimer {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        /* Next Steps Section */
+        .next-steps {
+            padding: 4rem 0;
+            background: var(--bg-secondary);
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .step-item {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .step-item p {
+            color: var(--text-secondary);
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 4rem 0;
+        }
+
+        .stats-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: var(--text-primary);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 1rem;
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--gradient-neon);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-text {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .for-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .form-container {
+                margin: 0 1rem;
+                padding: 2rem;
+            }
+            
+            .checkbox-group {
+                flex-direction: column;
+            }
+        }
+
+        /* Animation Classes */
+        [data-aos] {
+            opacity: 0;
+            transition-property: opacity, transform;
+        }
+
+        [data-aos].aos-animate {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="/" class="logo">CastPod Connect</a>
+                <a href="/" class="back-link">← Back to Home</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge" data-aos="fade-up">
+                🔥 Limited Time: Free Brand Audit + Custom Podcast Strategy (Worth ₹25,000)
+            </div>
+            <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">
+                Let's 10x Your Brand Together
+            </h1>
+            <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">
+                Stop wasting money on ads that interrupt. Start investing in voices that influence. Book a free strategy call and discover how podcast marketing can transform your brand.
+            </p>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <div class="container">
+            <div class="benefits-grid">
+                <div class="benefit-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="benefit-icon">4x</div>
+                    <h3>Better ROI</h3>
+                    <p>Podcast ads deliver 4x better ROI than traditional advertising. Your competitors don't know this yet.</p>
+                </div>
+                <div class="benefit-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="benefit-icon">🎯</div>
+                    <h3>Engaged Audiences</h3>
+                    <p>Reach people who actually listen. No ad-blockers, no skipping. Pure, undivided attention.</p>
+                </div>
+                <div class="benefit-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="benefit-icon">⭐</div>
+                    <h3>Instant Credibility</h3>
+                    <p>When trusted hosts recommend you, their audience trusts you. It's that simple.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What You'll Get Section -->
+    <section class="what-you-get">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">What You'll Get in This FREE Call:</h2>
+            
+            <div class="get-grid">
+                <div class="get-card" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Custom Brand Audit</h3>
+                    <p>We'll analyze your current marketing and show you exactly where podcast advertising fits. No generic advice—this is tailored to YOUR brand.</p>
+                </div>
+                <div class="get-card" data-aos="fade-up" data-aos-delay="300">
+                    <h3>Perfect Podcast Matches</h3>
+                    <p>We'll identify 3-5 podcasts that are perfect for your brand. Shows your competitors haven't discovered yet.</p>
+                </div>
+                <div class="get-card" data-aos="fade-up" data-aos-delay="400">
+                    <h3>90-Day Growth Strategy</h3>
+                    <p>A complete roadmap to scale your brand through podcast marketing. Step-by-step, month-by-month.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Perfect For / Not For Section -->
+    <section class="for-section">
+        <div class="container">
+            <div class="for-grid">
+                <div class="for-card perfect" data-aos="fade-right">
+                    <h3>🎯 Perfect For:</h3>
+                    <ul>
+                        <li>D2C brands spending ₹2L+ monthly on ads</li>
+                        <li>SaaS companies looking for quality leads</li>
+                        <li>Startups ready to scale beyond social media</li>
+                        <li>Established brands wanting authentic reach</li>
+                    </ul>
+                </div>
+                <div class="for-card not-for" data-aos="fade-left">
+                    <h3>⚠️ Not For:</h3>
+                    <ul>
+                        <li>Brands looking for quick fixes</li>
+                        <li>Companies not ready to invest in growth</li>
+                        <li>Businesses without clear target audiences</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Form Section -->
+    <section class="form-section">
+        <div class="container">
+            <div class="form-container" data-aos="fade-up">
+                <h2 class="form-title">Book Your Free Strategy Call</h2>
+                <p class="form-subtitle">30 minutes that could change your marketing forever</p>
+                <div class="form-badge">
+                    <span class="badge">✅ 100% Free • No Pitch • Pure Value</span>
+                </div>
+
+                <form id="strategy-form">
+                    <div class="form-group">
+                        <label for="firstName">First Name <span class="required">*</span></label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastName">Last Name <span class="required">*</span></label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="workEmail">Work Email <span class="required">*</span></label>
+                        <input type="email" id="workEmail" name="workEmail" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number <span class="required">*</span></label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="companyName">Company Name <span class="required">*</span></label>
+                        <input type="text" id="companyName" name="companyName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="website">Company Website</label>
+                        <input type="url" id="website" name="website" placeholder="https://">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="industry">Industry <span class="required">*</span></label>
+                        <select id="industry" name="industry" required>
+                            <option value="">Select your industry</option>
+                            <option value="ecommerce">E-commerce / D2C</option>
+                            <option value="saas">SaaS / Technology</option>
+                            <option value="fintech">Fintech / Finance</option>
+                            <option value="healthcare">Healthcare / Wellness</option>
+                            <option value="education">Education / EdTech</option>
+                            <option value="food">Food & Beverage</option>
+                            <option value="fashion">Fashion / Lifestyle</option>
+                            <option value="realestate">Real Estate</option>
+                            <option value="automotive">Automotive</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Current Marketing Channels <span class="required">*</span></label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="google-ads" name="channels" value="google-ads">
+                                <label for="google-ads">Google Ads</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="facebook-ads" name="channels" value="facebook-ads">
+                                <label for="facebook-ads">Facebook Ads</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="instagram-ads" name="channels" value="instagram-ads">
+                                <label for="instagram-ads">Instagram Ads</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="linkedin-ads" name="channels" value="linkedin-ads">
+                                <label for="linkedin-ads">LinkedIn Ads</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="influencer" name="channels" value="influencer">
+                                <label for="influencer">Influencer Marketing</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="content" name="channels" value="content">
+                                <label for="content">Content Marketing</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="email" name="channels" value="email">
+                                <label for="email">Email Marketing</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="other-channels" name="channels" value="other">
+                                <label for="other-channels">Other</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="marketingSpend">Monthly Marketing Spend <span class="required">*</span></label>
+                        <select id="marketingSpend" name="marketingSpend" required>
+                            <option value="">Select range</option>
+                            <option value="under-1l">Under ₹1,00,000</option>
+                            <option value="1l-5l">₹1,00,000 - ₹5,00,000</option>
+                            <option value="5l-10l">₹5,00,000 - ₹10,00,000</option>
+                            <option value="10l-25l">₹10,00,000 - ₹25,00,000</option>
+                            <option value="above-25l">Above ₹25,00,000</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="challenge">What's your biggest marketing challenge right now? <span class="required">*</span></label>
+                        <textarea id="challenge" name="challenge" required placeholder="Tell us about your current marketing challenges..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="success">What would success look like for you?</label>
+                        <textarea id="success" name="success" placeholder="Describe your ideal outcome..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="callTime">Preferred Call Time</label>
+                        <select id="callTime" name="callTime">
+                            <option value="">Select preferred time</option>
+                            <option value="morning">Morning (9 AM - 12 PM)</option>
+                            <option value="afternoon">Afternoon (12 PM - 4 PM)</option>
+                            <option value="evening">Evening (4 PM - 7 PM)</option>
+                            <option value="flexible">I'm flexible</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn">Book My Free Strategy Call</button>
+
+                    <p class="form-disclaimer">
+                        By submitting this form, you agree to receive communication from CastPod Connect. We respect your privacy and will never spam you.
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Next Steps Section -->
+    <section class="next-steps">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">What happens next?</h2>
+            
+            <div class="steps-grid">
+                <div class="step-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="step-number">1</div>
+                    <p>We'll review your submission within 2 hours</p>
+                </div>
+                <div class="step-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="step-number">2</div>
+                    <p>Our team will send you a calendar link</p>
+                </div>
+                <div class="step-item" data-aos="fade-up" data-aos-delay="400">
+                    <div class="step-number">3</div>
+                    <p>You'll get a pre-call questionnaire</p>
+                </div>
+                <div class="step-item" data-aos="fade-up" data-aos-delay="500">
+                    <div class="step-number">4</div>
+                    <p>We'll prepare a custom strategy for your brand</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <h2 class="stats-title" data-aos="fade-up">Why Brands Choose Us</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-number">300%</div>
+                    <div class="stat-text">Average increase in brand awareness within 90 days</div>
+                </div>
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="stat-number">₹15L+</div>
+                    <div class="stat-text">Revenue generated for clients in the last 6 months</div>
+                </div>
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="stat-number">48hrs</div>
+                    <div class="stat-text">Average response time for campaign launches</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Form handling
+        document.getElementById('strategy-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = {};
+            
+            // Convert FormData to regular object
+            for (let [key, value] of formData.entries()) {
+                if (data[key]) {
+                    if (Array.isArray(data[key])) {
+                        data[key].push(value);
+                    } else {
+                        data[key] = [data[key], value];
+                    }
+                } else {
+                    data[key] = value;
+                }
+            }
+            
+            // Handle checkboxes
+            const channels = [];
+            document.querySelectorAll('input[name="channels"]:checked').forEach(checkbox => {
+                channels.push(checkbox.value);
+            });
+            data.channels = channels;
+            
+            console.log('Form submitted with data:', data);
+            
+            // Show success message (replace with actual form submission)
+            alert('Thank you! We\'ll review your submission within 2 hours and send you a calendar link.');
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Required checkbox validation
+        const form = document.getElementById('strategy-form');
+        const channelCheckboxes = document.querySelectorAll('input[name="channels"]');
+        
+        form.addEventListener('submit', function(e) {
+            const checkedChannels = document.querySelectorAll('input[name="channels"]:checked');
+            if (checkedChannels.length === 0) {
+                e.preventDefault();
+                alert('Please select at least one current marketing channel.');
+                return false;
+            }
+        });
+    </script>
+</body>
+</html>
