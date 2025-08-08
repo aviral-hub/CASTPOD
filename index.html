@@ -1,870 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CastPod Connect | Where Brands Meet Podcasts That Matter</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
-    <style>
-        :root {
-            --bg-primary: #0f0f14;
-            --bg-secondary: #181826;
-            --bg-tertiary: #1a1a2e;
-            --text-primary: #ffffff;
-            --text-secondary: #c9ccf8;
-            --text-muted: #8b8ba3;
-            --accent-primary: #6366f1;
-            --accent-secondary: #3b82f6;
-            --accent-neon: #00e8ff;
-            --accent-purple: #8b5cf6;
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --gradient-primary: linear-gradient(135deg, #6366f1 0%, #3b82f6 100%);
-            --gradient-neon: linear-gradient(135deg, #00e8ff 0%, #8b5cf6 100%);
-            --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.2);
-            --shadow-hover: 0 20px 40px rgba(59, 130, 246, 0.1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1240px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Header & Navigation */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            backdrop-filter: blur(20px);
-            background: rgba(15, 15, 20, 0.9);
-            border-bottom: 1px solid var(--glass-border);
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        .nav-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1rem 2rem;
-            max-width: 1240px;
-            margin: 0 auto;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            background: var(--gradient-neon);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            text-decoration: none;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-menu a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-menu a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background: var(--gradient-neon);
-            transition: width 0.3s ease;
-        }
-
-        .nav-menu a:hover {
-            color: var(--accent-neon);
-        }
-
-        .nav-menu a:hover::after {
-            width: 100%;
-        }
-
-        .mobile-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--text-primary);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 8rem 0 4rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 50%;
-            height: 100%;
-            background: radial-gradient(circle at 30% 40%, var(--accent-primary) 0%, transparent 50%);
-            opacity: 0.1;
-        }
-
-        .hero-content {
-            display: flex;
-            align-items: center;
-            gap: 4rem;
-            width: 100%;
-        }
-
-        .hero-text {
-            flex: 1;
-            z-index: 2;
-        }
-
-        .hero-title {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            background: var(--gradient-neon);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-        }
-
-        .hero-subtitle {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            max-width: 600px;
-        }
-
-        .hero-cta {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-block;
-            font-size: 1rem;
-        }
-
-        .btn-primary {
-            background: var(--gradient-primary);
-            color: var(--text-primary);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            border: 2px solid var(--accent-secondary);
-            color: var(--accent-secondary);
-        }
-
-        .btn-secondary:hover {
-            background: var(--accent-secondary);
-            color: var(--text-primary);
-        }
-
-        .hero-visual {
-            flex: 1;
-            position: relative;
-            min-height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .hero-shape {
-            width: 300px;
-            height: 300px;
-            background: var(--gradient-neon);
-            border-radius: 50%;
-            filter: blur(40px);
-            opacity: 0.3;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-
-        /* Section Styles */
-        .section {
-            padding: 6rem 0;
-        }
-
-        .section-title {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 800;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-
-        .section-subtitle {
-            font-size: 1.125rem;
-            color: var(--text-secondary);
-            text-align: center;
-            margin-bottom: 4rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Services Grid */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .service-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 1rem;
-            padding: 2rem;
-            transition: all 0.3s ease;
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-glass);
-            border-color: var(--accent-secondary);
-        }
-
-        .service-card h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .service-card p {
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        /* Stats Section */
-        .stats {
-            background: var(--bg-secondary);
-            padding: 4rem 0;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            text-align: center;
-        }
-
-        .stat-item h3 {
-            font-size: 3rem;
-            font-weight: 800;
-            background: var(--gradient-neon);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-item p {
-            color: var(--text-secondary);
-            font-size: 1.125rem;
-        }
-
-        /* Process Section */
-        .process-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .process-step {
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .process-number {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: var(--gradient-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-
-        .process-step h3 {
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Team Section */
-        .team-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .team-stat {
-            padding: 1.5rem;
-        }
-
-        .team-stat h3 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--accent-neon);
-            margin-bottom: 0.5rem;
-        }
-
-        .team-stat p {
-            color: var(--text-secondary);
-        }
-
-        /* Blog Grid */
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .blog-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 1rem;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .blog-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-glass);
-        }
-
-        .blog-card-content {
-            padding: 2rem;
-        }
-
-        .blog-date {
-            color: var(--text-muted);
-            font-size: 0.875rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .blog-card h3 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .blog-card p {
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        /* Contact Section */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .contact-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 1rem;
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color: var(--text-primary);
-        }
-
-        .contact-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-glass);
-            border-color: var(--accent-secondary);
-        }
-
-        .contact-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .contact-card p {
-            color: var(--text-secondary);
-            font-size: 0.875rem;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--bg-secondary);
-            padding: 3rem 0 1rem;
-            border-top: 1px solid var(--glass-border);
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .footer-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: var(--accent-neon);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid var(--glass-border);
-            color: var(--text-muted);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-            }
-            
-            .mobile-menu-toggle {
-                display: block;
-            }
-            
-            .hero-content {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .hero-cta {
-                justify-content: center;
-            }
-            
-            .stats-grid,
-            .services-grid,
-            .process-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-content {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .footer-links {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-        }
-
-        /* Animation Classes */
-        [data-aos] {
-            opacity: 0;
-            transition-property: opacity, transform;
-        }
-
-        [data-aos].aos-animate {
-            opacity: 1;
-        }
-    </style>
+  <!-- ==================================================================
+       CastPod Connect • Starter Index (inspired by redoxagency.in)
+       ──────────────────────────────────────────────────────────────
+       1. Rename each SECTION-ID, replace dummy text, swap images.
+       2. Link your real CSS (tailwind / bootstrap / custom).
+       3. Delete any blocks you don’t need or duplicate to expand.
+  =================================================================== -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CastPod Connect – Real Voices. Real Brands. Real Impact.</title>
+
+  <!-- Core fonts & quick-start stylesheet (swap for your build pipeline) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --blue:#274AE7;--sky:#39A7FF;--dark:#0F172A;--bg:#F5F8FD;--green:#28C76F;
+      --radius:8px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Inter,Arial,Helvetica,sans-serif;color:var(--dark);background:var(--bg)}
+    h1,h2,h3,h4{font-family:Montserrat,Inter,sans-serif}
+    a{color:inherit;text-decoration:none}
+    .btn{display:inline-block;padding:.8rem 1.6rem;border-radius:var(--radius);font-weight:600}
+    .btn--primary{background:var(--blue);color:#fff}
+    .btn--outline{border:2px solid var(--blue);color:var(--blue)}
+    section{padding:4rem 0}
+    .container{width:90%;max-width:1180px;margin:auto}
+    .flex{display:flex;gap:1.5rem;align-items:center}
+    .grid{display:grid;gap:2rem}
+    @media (min-width:768px){.grid-2{grid-template-columns:repeat(2,1fr)}}
+  </style>
 </head>
+
 <body>
-    <!-- Header -->
-    <header>
-        <nav class="nav-container">
-            <a href="#" class="logo">CastPod Connect</a>
-            <ul class="nav-menu">
-                <li><a href="#brands">For Brands</a></li>
-                <li><a href="#podcasters">For Podcasters</a></li>
-                <li><a href="/instagram-creators">Instagram Creators</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="/blog">Blog</a></li>
-                <li><a href="/join" class="btn btn-primary" style="padding: 0.5rem 1rem;">💼 Join Us</a></li>
-                <li><a href="/book-call" class="btn btn-secondary" style="padding: 0.5rem 1rem;">Book a Call</a></li>
-            </ul>
-            <button class="mobile-menu-toggle">☰</button>
-        </nav>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text" data-aos="fade-up">
-                    <h1 class="hero-title">Where Brands Meet Podcasts That Matter</h1>
-                    <p class="hero-subtitle">Real Voices. Real Brands. Real Impact. This isn't just advertising—it's authentic connection.</p>
-                    <div class="hero-cta">
-                        <a href="/brand-inquiry" class="btn btn-primary">I'm a Brand</a>
-                        <a href="/podcast-submission" class="btn btn-secondary">I'm a Podcaster</a>
-                    </div>
-                </div>
-                <div class="hero-visual" data-aos="fade-left" data-aos-delay="200">
-                    <div class="hero-shape"></div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- ================================================================
+     01 • NAVBAR (sticky) 
+     ================================================================ -->
+<header class="container flex" style="justify-content:space-between;padding:1.2rem 0;">
+  <a href="#"><strong>CastPod<span style="color:var(--blue)">Connect</span></strong></a>
+  <nav class="flex" style="gap:1.2rem;">
+    <a href="#brands">For Brands</a>
+    <a href="#podcasters">For Podcasters</a>
+    <a href="#creators">Instagram Creators</a>
+    <a href="#about">About</a>
+    <a href="#blog">Blog</a>
+    <a href="#join" class="btn btn--primary">Join Network</a>
+  </nav>
+</header>
 
-    <!-- What We Do Section -->
-    <section class="section" id="services">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">What We Do (And Why It Matters)</h2>
-            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Three clear blocks. No fluff.</p>
-            
-            <div class="services-grid">
-                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-                    <h3>Talent Discovery</h3>
-                    <p>We find podcasters with purpose, not just a mic. Quality voices that align with your brand values.</p>
-                </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-                    <h3>Brand Partnerships</h3>
-                    <p>We don't do mass marketing. We do authentic placement that feels natural and drives results.</p>
-                </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="400">
-                    <h3>Creator Growth Strategy</h3>
-                    <p>Monetization isn't a bonus. It's the goal. We help creators build sustainable income streams.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- ================================================================
+     02 • HERO
+     ================================================================ -->
+<section id="hero" class="container flex" style="min-height:80vh;flex-direction:column;justify-content:center;text-align:center;">
+  <h1 style="font-size:clamp(2.2rem,5vw,3.6rem);margin-bottom:1rem;">
+    Where Brands Meet <span style="color:var(--blue)">Podcasts</span> That Matter
+  </h1>
+  <p style="margin-bottom:2rem;max-width:620px;">
+    Turn passion into paychecks with India’s fastest-growing podcast network. Real voices, real brands, real impact.
+  </p>
+  <div class="flex" style="justify-content:center;">
+    <a href="#join" class="btn btn--primary">Join Network</a>
+    <a href="#brands" class="btn btn--outline">Book a Call</a>
+  </div>
+</section>
 
-    <!-- Why Podcasting Section -->
-    <section class="section stats">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Why Podcasting?</h2>
-            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Stats aren't decoration. They're ammo.</p>
-            
-            <div class="stats-grid">
-                <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
-                    <h3>4x</h3>
-                    <p>Podcast listeners are 4x more likely to trust a brand they hear in a show.</p>
-                </div>
-                <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
-                    <h3>🚀</h3>
-                    <p>India's audio scene is exploding. Ride the wave or miss the moment.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- ================================================================
+     03 • WHAT WE DO
+     ================================================================ -->
+<section id="services" style="background:#fff;">
+  <div class="container">
+    <h2 style="text-align:center;margin-bottom:2rem;">What We Do</h2>
+    <div class="grid grid-2">
+      <div><h3>Talent Discovery</h3><p>We scout India’s most engaging podcasters & micro-influencers.</p></div>
+      <div><h3>Brand Partnerships</h3><p>Matching authentic voices with values-aligned brands.</p></div>
+      <div><h3>Creator Growth</h3><p>Workshops, analytics, and coaching to scale audiences.</p></div>
+      <div><h3>Monetization</h3><p>Commission-based deals, host-read ads, custom segments, and more.</p></div>
+    </div>
+  </div>
+</section>
 
-    <!-- Stop Interrupting Section -->
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Stop Interrupting. Start Belonging.</h2>
-            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">People are done with ads. But they still trust voices. Be the brand that belongs in the conversation.</p>
-            
-            <div class="services-grid">
-                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-                    <h3>Host-read ads</h3>
-                    <p>Personal endorsements that feel authentic</p>
-                </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-                    <h3>Custom segments</h3>
-                    <p>Tailored content that fits naturally</p>
-                </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="400">
-                    <h3>Real metrics that matter</h3>
-                    <p>Track engagement, not just impressions</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- ================================================================
+     04 • STATS STRIP
+     ================================================================ -->
+<section id="stats" style="background:var(--blue);color:#fff;">
+  <div class="container grid" style="text-align:center;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));">
+    <div><h3>4×</h3><p>Higher brand trust</p></div>
+    <div><h3>1K+</h3><p>Active creators</p></div>
+    <div><h3>30%</h3><p>YOY audio growth</p></div>
+    <div><h3>100%</h3><p>Human-first approach</p></div>
+  </div>
+</section>
 
-    <!-- Process Section -->
-    <section class="section" id="process">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">The Process</h2>
-            
-            <div class="process-grid">
-                <div class="process-step" data-aos="fade-up" data-aos-delay="200">
-                    <div class="process-number">1</div>
-                    <h3>Discovery</h3>
-                </div>
-                <div class="process-step" data-aos="fade-up" data-aos-delay="300">
-                    <div class="process-number">2</div>
-                    <h3>Matchmaking</h3>
-                </div>
-                <div class="process-step" data-aos="fade-up" data-aos-delay="400">
-                    <div class="process-number">3</div>
-                    <h3>Creative Launch</h3>
-                </div>
-                <div class="process-step" data-aos="fade-up" data-aos-delay="500">
-                    <div class="process-number">4</div>
-                    <h3>Real-Time Reporting</h3>
-                </div>
-            </div>
-            
-            <div class="hero-cta" style="justify-content: center; margin-top: 3rem;">
-                <a href="/book-call" class="btn btn-primary">Schedule a Call</a>
-                <a href="#" class="btn btn-secondary">Download Our Brand Kit</a>
-            </div>
-        </div>
-    </section>
+<!-- ================================================================
+     05 • PROCESS (4 steps)
+     ================================================================ -->
+<section id="process">
+  <div class="container">
+    <h2 style="text-align:center;margin-bottom:2rem;">Our Simple Process</h2>
+    <div class="grid grid-2">
+      <div><h3>01 • Discovery</h3><p>Deep-dive on brand goals & creator fit.</p></div>
+      <div><h3>02 • Matchmaking</h3><p>Algorithm + human curation pairs you perfectly.</p></div>
+      <div><h3>03 • Creative Launch</h3><p>Host-read ads & custom segments go live.</p></div>
+      <div><h3>04 • Real-Time Reporting</h3><p>Track engagement & optimise in one dashboard.</p></div>
+    </div>
+  </div>
+</section>
 
-    <!-- For Podcasters Section -->
-    <section class="section" id="podcasters">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Turn Your Passion Into Paychecks</h2>
-            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Truth: Your voice has value. It's time someone paid you for it.</p>
-            
-            <div class="services-grid">
-                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-                    <h3>What You Get</h3>
-                    <p>Brand deals that fit your voice. A team that pitches you like you're already a star.</p>
-                </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-                    <h3>Phase 2 (Coming Soon)</h3>
-                    <p>Once you start earning, we help you scale: Editing help, Social media growth, Audiogram clips, Marketing muscle</p>
-                </div>
-            </div>
-            
-            <div class="hero-cta" style="justify-content: center; margin-top: 3rem;">
-                <a href="/podcast-submission" class="btn btn-primary">Submit Your Podcast</a>
-            </div>
-        </div>
-    </section>
+<!-- ================================================================
+     06 • WHY PODCAST ADS WORK (value cards)
+     ================================================================ -->
+<section id="why" style="background:#fff;">
+  <div class="container">
+    <h2 style="text-align:center;margin-bottom:2rem;">Why Podcast Ads Work</h2>
+    <div class="grid grid-2">
+      <div><h3>Higher Trust</h3><p>Listeners see host recommendations as personal advice.</p></div>
+      <div><h3>India Focused</h3><p>Local languages, skyrocketing listener base.</p></div>
+      <div><h3>Creator Alignment</h3><p>We only pair brands with genuinely aligned voices.</p></div>
+      <div><h3>Real-Time Metrics</h3><p>Engagement and conversion data you can act on.</p></div>
+    </div>
+  </div>
+</section>
 
-    <!-- Instagram Creators Section -->
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Instagram Creators: Start Earning Today</h2>
-            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Even with 1K followers, you can monetize your influence. Join thousands of creators earning through authentic brand partnerships.</p>
-            
-            <div class="services-grid">
-                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-                    <h3>No Minimum Followers</h3>
-                    <p>Start earning from 1K followers with authentic engagement</p>
-                </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-                    <h3>Brand Alignment</h3>
-                    <p>Only work with brands that match your content and values</p>
-                </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="400">
-                    <h3>Fair Compensation</h3>
-                    <p>Transparent rates and timely payments for all collaborations</p>
-                </div>
-            </div>
-            
-            <div class="hero-cta" style="justify-content: center; margin-top: 3rem;">
-                <a href="/instagram-creators" class="btn btn-primary">Join as Instagram Creator</a>
-            </div>
-        </div>
-    </section>
+<!-- ================================================================
+     07 • CALL-OUT: JOIN CREATOR ECONOMY
+     ================================================================ -->
+<section id="join" style="background:var(--dark);color:#fff;text-align:center;">
+  <div class="container" style="padding:3rem 1rem;">
+    <h2>Ready to join the creator economy revolution?</h2>
+    <p style="margin:1rem 0 2rem;">Start earning through authentic partnerships today.</p>
+    <a href="#apply" class="btn btn--primary">Apply Now</a>
+  </div>
+</section>
 
-    <!-- Team Section -->
-    <section class="section stats" id="about">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Small Team. Loud Vision.</h2>
-            
-            <div class="team-stats">
-                <div class="team-stat" data-aos="fade-up" data-aos-delay="200">
-                    <h3>4</h3>
-                    <p>People. One mission: put podcasters on the map.</p>
-                </div>
-                <div class="team-stat" data-aos="fade-up" data-aos-delay="300">
-                    <h3>🇮🇳</h3>
-                    <p>Based in India. Rooted in hustle.</p>
-                </div>
-            </div>
-            
-            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="400">Not trying to be another agency — trying to build a movement. Vision: Make podcasting a legit career path in the creator economy.</p>
-        </div>
-    </section>
+<!-- ================================================================
+     08 • ABOUT / TEAM
+     ================================================================ -->
+<section id="about">
+  <div class="container grid grid-2">
+    <div>
+      <h2>Small Team. Loud Vision.</h2>
+      <p>We’re a 4-person crew based in India with one mission: put podcasters on the map and build a movement around meaningful audio content.</p>
+      <p><strong>Vision:</strong> Make podcasting a legit career path in the creator economy.</p>
+    </div>
+    <div><!-- placeholder for team image / collage --></div>
+  </div>
+</section>
 
-    <!-- Blog Section -->
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Learn From Our Blog</h2>
-            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Insights, strategies, and trends in podcast marketing and creator monetization.</p>
-            
-            <div class="blog-grid">
-                <div class="blog-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="blog-card-content">
-                        <div class="blog-date">May 28, 2024</div>
-                        <h3>The Complete Guide to Podcast Monetization in 2024</h3>
-                        <p>Discover proven strategies to turn your podcast into a sustainable income stream.</p>
-                    </div>
-                </div>
-                <div class="blog-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="blog-card-content">
-                        <div class="blog-date">May 20, 2024</div>
-                        <h3>Instagram Creator Strategies: Beyond Follower Count</h3>
-                        <p>How micro-influencers are outperforming accounts with millions of followers.</p>
-                    </div>
-                </div>
-                <div class="blog-card" data-aos="fade-up" data-aos-delay="400">
-                    <div class="blog-card-content">
-                        <div class="blog-date">May 15, 2024</div>
-                        <h3>How Brands Can Find Their Perfect Podcast Match</h3>
-                        <p>A step-by-step guide to identifying podcasts that align with your brand values.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="hero-cta" style="justify-content: center; margin-top: 3rem;">
-                <a href="/blog" class="btn btn-secondary">View All Articles</a>
-            </div>
-        </div>
-    </section>
+<!-- ================================================================
+     09 • CONTACT / FOOTER
+     ================================================================ -->
+<footer style="background:var(--blue);color:#fff;">
+  <div class="container grid" style="padding:2.5rem 0;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));">
+    <div>
+      <h4>CastPod Connect</h4>
+      <p>Based in India<br/>Building the future of creator economy</p>
+    </div>
+    <div>
+      <h4>Creators</h4>
+      <a href="#">Submit Podcast</a><br/>
+      <a href="#">Instagram Network</a>
+    </div>
+    <div>
+      <h4>Brands</h4>
+      <a href="#">Partner Inquiry</a><br/>
+      <a href="#">ROI Tracking</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <p>castpodconnect@gmail.com</p>
+      <a href="#" class="btn btn--outline" style="margin-top:.6rem;">Book Discovery Call</a>
+    </div>
+  </div>
+  <div style="text-align:center;padding:1rem;background:#1936c5;">© 2025 CastPod Connect</div>
+</footer>
 
-    <!-- Contact Section -->
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Ready to Start?</h2>
-            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Don't hide. Make it easy.</p>
-            
-            <div class="contact-grid">
-                <a href="/brand-inquiry" class="contact-card" data-aos="fade-up" data-aos-delay="200">
-                    <h3>Brand Interest Form</h3>
-                    <p>Quick brand partnership inquiry</p>
-                </a>
-                <a href="/podcast-submission" class="contact-card" data-aos="fade-up" data-aos-delay="300">
-                    <h3>Submit Your Podcast</h3>
-                    <p>Join our creator network</p>
-                </a>
-                <a href="/instagram-creators" class="contact-card" data-aos="fade-up" data-aos-delay="400">
-                    <h3>Instagram Creator Network</h3>
-                    <p>Start earning from 1K followers</p>
-                </a>
-                <a href="/book-call" class="contact-card" data-aos="fade-up" data-aos-delay="500">
-                    <h3>Book a Discovery Call</h3>
-                    <p>Let's discuss your goals</p>
-                </a>
-            </div>
-            
-            <div style="text-align: center; margin-top: 3rem;" data-aos="fade-up" data-aos-delay="600">
-                <h3 style="margin-bottom: 0.5rem;">Direct Email</h3>
-                <p style="color: var(--accent-neon); font-size: 1.125rem;">castpodconnect@gmail.com</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="logo">CastPod Connect</div>
-                <ul class="footer-links">
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-bottom">
-                <p>© 2024 CastPod Connect. Real Voices. Real Brands. Real Impact.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true
-        });
-
-        // Mobile menu toggle
-        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-        const navMenu = document.querySelector('.nav-menu');
-
-        mobileMenuToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Header background on scroll
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(15, 15, 20, 0.95)';
-            } else {
-                header.style.background = 'rgba(15, 15, 20, 0.9)';
-            }
-        });
-    </script>
+<!-- Optional: minimal vanilla JS placeholder -->
+<script>
+/* collapsible mobile nav, scroll reveal, etc. */
+</script>
 </body>
 </html>
