@@ -1,73 +1,469 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- ==================================================================
-       CastPod Connect • Starter Index (inspired by redoxagency.in)
-       ──────────────────────────────────────────────────────────────
-       1. Rename each SECTION-ID, replace dummy text, swap images.
-       2. Link your real CSS (tailwind / bootstrap / custom).
-       3. Delete any blocks you don’t need or duplicate to expand.
-  =================================================================== -->
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CastPod Connect – Real Voices. Real Brands. Real Impact.</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CastPod Connect - Real Voices. Real Brands. Real Impact.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-blue: #274AE7;
+            --accent-sky: #39A7FF;
+            --dark: #0F172A;
+            --light-bg: #F5F8FD;
+            --success-green: #28C76F;
+        }
 
-  <!-- Core fonts & quick-start stylesheet (swap for your build pipeline) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --blue:#274AE7;--sky:#39A7FF;--dark:#0F172A;--bg:#F5F8FD;--green:#28C76F;
-      --radius:8px;
-    }
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:Inter,Arial,Helvetica,sans-serif;color:var(--dark);background:var(--bg)}
-    h1,h2,h3,h4{font-family:Montserrat,Inter,sans-serif}
-    a{color:inherit;text-decoration:none}
-    .btn{display:inline-block;padding:.8rem 1.6rem;border-radius:var(--radius);font-weight:600}
-    .btn--primary{background:var(--blue);color:#fff}
-    .btn--outline{border:2px solid var(--blue);color:var(--blue)}
-    section{padding:4rem 0}
-    .container{width:90%;max-width:1180px;margin:auto}
-    .flex{display:flex;gap:1.5rem;align-items:center}
-    .grid{display:grid;gap:2rem}
-    @media (min-width:768px){.grid-2{grid-template-columns:repeat(2,1fr)}}
-  </style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark);
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, var(--dark) 0%, #1a1f3a 50%, var(--primary-blue) 100%);
+            z-index: 1;
+        }
+
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .wave-element {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(39, 74, 231, 0.1), transparent);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .wave-1 { top: 10%; left: -10%; animation-delay: 0s; }
+        .wave-2 { top: 60%; right: -15%; animation-delay: 2s; transform: scale(1.5); }
+        .wave-3 { bottom: 20%; left: 50%; animation-delay: 4s; transform: scale(0.8); }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+            50% { transform: translateY(-30px) rotate(10deg); opacity: 0.6; }
+        }
+
+        /* Hero Container */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            z-index: 10;
+            padding: 0 2rem;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            color: white;
+        }
+
+        /* Animated Text */
+        .hero-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 6rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: slideInUp 1s ease-out 0.5s forwards;
+        }
+
+        .hero-title .highlight {
+            background: linear-gradient(45deg, var(--accent-sky), var(--primary-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            display: inline-block;
+        }
+
+        .typewriter {
+            display: inline-block;
+            border-right: 3px solid var(--accent-sky);
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { border-color: var(--accent-sky); }
+            51%, 100% { border-color: transparent; }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 3vw, 1.8rem);
+            font-weight: 500;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0;
+            animation: slideInUp 1s ease-out 1s forwards;
+        }
+
+        /* Stats Animation */
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: slideInUp 1s ease-out 1.5s forwards;
+        }
+
+        .stat-item {
+            text-align: center;
+            position: relative;
+        }
+
+        .stat-number {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent-sky);
+            display: block;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.5rem;
+            opacity: 0.8;
+        }
+
+        /* CTA Buttons */
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: slideInUp 1s ease-out 2s forwards;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-sky));
+            color: white;
+            box-shadow: 0 10px 30px rgba(39, 74, 231, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(39, 74, 231, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid var(--accent-sky);
+        }
+
+        .btn-outline:hover {
+            background: var(--accent-sky);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(57, 167, 255, 0.3);
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            opacity: 0.7;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* Animation Keyframes */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-stats {
+                gap: 2rem;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+            
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 250px;
+            }
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .logo .highlight {
+            color: var(--accent-sky);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-sky);
+        }
+    </style>
 </head>
-
 <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">
+                CastPod<span class="highlight">Connect</span>
+            </div>
+            <div class="nav-links">
+                <a href="#brands">For Brands</a>
+                <a href="#podcasters">For Podcasters</a>
+                <a href="#creators">Instagram Creators</a>
+                <a href="#about">About</a>
+                <a href="#join" class="btn btn-outline" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;">Join Network</a>
+            </div>
+        </div>
+    </nav>
 
-<!-- ================================================================
-     01 • NAVBAR (sticky) 
-     ================================================================ -->
-<header class="container flex" style="justify-content:space-between;padding:1.2rem 0;">
-  <a href="#"><strong>CastPod<span style="color:var(--blue)">Connect</span></strong></a>
-  <nav class="flex" style="gap:1.2rem;">
-    <a href="#brands">For Brands</a>
-    <a href="#podcasters">For Podcasters</a>
-    <a href="#creators">Instagram Creators</a>
-    <a href="#about">About</a>
-    <a href="#blog">Blog</a>
-    <a href="#join" class="btn btn--primary">Join Network</a>
-  </nav>
-</header>
+    <!-- Hero Section -->
+    <section class="hero">
+        <!-- Animated Background -->
+        <div class="hero-bg">
+            <div class="floating-elements">
+                <div class="wave-element wave-1"></div>
+                <div class="wave-element wave-2"></div>
+                <div class="wave-element wave-3"></div>
+            </div>
+        </div>
 
-<!-- ================================================================
-     02 • HERO
-     ================================================================ -->
-<section id="hero" class="container flex" style="min-height:80vh;flex-direction:column;justify-content:center;text-align:center;">
-  <h1 style="font-size:clamp(2.2rem,5vw,3.6rem);margin-bottom:1rem;">
-    Where Brands Meet <span style="color:var(--blue)">Podcasts</span> That Matter
-  </h1>
-  <p style="margin-bottom:2rem;max-width:620px;">
-    Turn passion into paychecks with India’s fastest-growing podcast network. Real voices, real brands, real impact.
-  </p>
-  <div class="flex" style="justify-content:center;">
-    <a href="#join" class="btn btn--primary">Join Network</a>
-    <a href="#brands" class="btn btn--outline">Book a Call</a>
-  </div>
-</section>
+        <!-- Hero Content -->
+        <div class="hero-content">
+            <h1 class="hero-title">
+                Where Brands Meet<br>
+                <span class="highlight typewriter" id="typewriter">Podcasts</span><br>
+                That Matter
+            </h1>
+            
+            <p class="hero-subtitle">
+                Turn passion into paychecks with India's fastest-growing podcast network. 
+                Real voices, real brands, real impact.
+            </p>
+
+            <!-- Stats -->
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number" data-target="4">0</span>
+                    <span class="stat-label">x Higher Trust</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="1000">0</span>
+                    <span class="stat-label">+ Active Creators</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="30">0</span>
+                    <span class="stat-label">% YoY Growth</span>
+                </div>
+            </div>
+
+            <!-- CTA Buttons -->
+            <div class="hero-cta">
+                <a href="#join" class="btn btn-primary">Join Network</a>
+                <a href="#brands" class="btn btn-outline">Book a Call</a>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+            <svg width="20" height="30" viewBox="0 0 20 30" fill="currentColor">
+                <path d="M10 0C4.48 0 0 4.48 0 10v10c0 5.52 4.48 10 10 10s10-4.48 10-10V10C20 4.48 15.52 0 10 0zm0 25c-2.76 0-5-2.24-5-5V10c0-2.76 2.24-5 5-5s5 2.24 5 5v10c0 2.76-2.24 5-5 5z"/>
+                <circle cx="10" cy="12" r="2"/>
+            </svg>
+            <p style="margin-top: 0.5rem; font-size: 0.8rem;">Scroll Down</p>
+        </div>
+    </section>
+
+    <script>
+        // Typewriter Effect
+        const typewriterElement = document.getElementById('typewriter');
+        const words = ['Podcasts', 'Voices', 'Stories', 'Creators'];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function typeWriter() {
+            const currentWord = words[wordIndex];
+            
+            if (isDeleting) {
+                typewriterElement.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typewriterElement.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                setTimeout(() => isDeleting = true, 2000);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+            }
+
+            setTimeout(typeWriter, isDeleting ? 100 : 150);
+        }
+
+        // Start typewriter effect after initial animation
+        setTimeout(typeWriter, 2500);
+
+        // Animated Counter
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+            
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const increment = target / 100;
+                let current = 0;
+                
+                const updateCounter = () => {
+                    if (current < target) {
+                        current += increment;
+                        counter.textContent = Math.floor(current);
+                        setTimeout(updateCounter, 30);
+                    } else {
+                        counter.textContent = target;
+                    }
+                };
+                
+                updateCounter();
+            });
+        }
+
+        // Start counter animation after stats appear
+        setTimeout(animateCounters, 2000);
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(15, 23, 42, 0.98)';
+                navbar.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
+            } else {
+                navbar.style.background = 'rgba(15, 23, 42, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
 
 <!-- ================================================================
      03 • WHAT WE DO
